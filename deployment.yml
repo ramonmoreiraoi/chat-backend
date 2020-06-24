@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+        kind: Deployment
+metadata:
+ name: node-web-app
+spec:
+ replicas: 2
+ selector:
+     matchLabels:
+       app: node-web-app
+ template:
+   metadata:
+     labels:
+       app: node-web-app
+   spec:
+     containers:
+     - name: node-web-app
+       image: us.icr.io/cldstd30-ns/node-web-app:latest
+       ports:
+         - containerPort: 8080
+       env:
+         - name: APIKEY
+           value: whQxkqYNcUGg2P6g14hLjuiYbnQfSjaHF2RDfoy8WrV
+         - name: URL
+           value: https://api.us-south.assistant.watson.cloud.ibm.com/instances/f4526bea-3c72-423a-86da-dd3da60fc0f1/v1/workspaces/852a7e72-5ce2-4de0-a5c6-70c8a0b380bc/message 
+         - name: ASSISTANT_ID
+           value: 852a7e72-5ce2-4de0-a5c6-70c8a0b380bc 
+       imagePullPolicy: Always
